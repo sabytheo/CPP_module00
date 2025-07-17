@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsaby <tsaby@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tsaby <tsaby@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:52:22 by tsaby             #+#    #+#             */
-/*   Updated: 2025/07/09 15:29:20 by tsaby            ###   ########.fr       */
+/*   Updated: 2025/07/17 16:54:53 by tsaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,38 @@ int main(void)
 	std::string command;
 	Contact contact;
 
+	std::cout << "---------------------------------------------->" << std::endl;
 	std::cout << "Welcome to the PhoneBook application!" << std::endl;
 	std::cout << "You can add, search, or exit the application." << std::endl;
-	std::cout << "Type 'ADD' to add a contact, 'SEARCH' to search for contacts, or 'EXIT' to exit the application." << std::endl;
 	while (true)
 	{
+		std::cout << "---------------------------------------------->" << std::endl;
+		std::cout << "Type 'ADD' to add a contact, 'SEARCH' to search for contacts, or 'EXIT' to exit the application." << std::endl;
 		std::cout << "Please enter a command: ";
-		std::getline(std::cin, command);
-		if (command == "ADD" || command == "add")
+		if (!std::getline(std::cin, command))
+		{
+			std::cout << std::endl << "EOF detected. Exiting the application. Goodbye!" << std::endl;
+			break;
+		}
+		if (command == "ADD")
 		{
 			Phonebook.set_info();
 		}
-		else if (command == "SEARCH" || command == "search")
+		else if (command == "SEARCH")
 		{
-			Phonebook.get_info();
+			Phonebook.search_info();
 		}
-		else if (command == "EXIT" || command == "exit")
+		else if (command == "EXIT")
 		{
 			std::cout << "Exiting the application. Goodbye!" << std::endl;
 			break;
 		}
-		else
+		else if (command.length() >= 0 && (command != "ADD" && command != "SEARCH" && command != "EXIT"))
 		{
-			std::cout << "Invalid command. Please try again." << std::endl;
+			std::cout << "\033[31mInvalid command. Please try again.\033[0m" << std::endl;
 		}
+		else
+			return (-1);
 	}
 	return 0;
 

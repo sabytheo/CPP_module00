@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsaby <tsaby@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tsaby <tsaby@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:15:16 by tsaby             #+#    #+#             */
-/*   Updated: 2025/07/09 15:31:39 by tsaby            ###   ########.fr       */
+/*   Updated: 2025/07/17 14:32:17 by tsaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <cstdlib>
 #include <iomanip>
-#include <string>
+#include <cstring>
 #include "Contact.hpp"
 
 class PhoneBook
@@ -28,8 +28,8 @@ class PhoneBook
 			PhoneBook(void);
 			~PhoneBook(void);
 
-			void set_info(void);
-			void get_info(void);
+			int set_info(void);
+			void search_info(void);
 };
 
 #endif

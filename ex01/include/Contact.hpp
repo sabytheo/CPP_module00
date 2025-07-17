@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsaby <tsaby@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tsaby <tsaby@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:15:16 by tsaby             #+#    #+#             */
-/*   Updated: 2025/07/09 15:31:03 by tsaby            ###   ########.fr       */
+/*   Updated: 2025/07/17 18:31:09 by tsaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@
 #include <string>
 #include <cstdlib>
 
+
 class Contact
 {
 	private:
 			static std::string	name[5];
-			std::string		information[11];
+			std::string		_info[11];
 
 			enum info_contact
 			{
@@ -37,7 +38,7 @@ class Contact
 			~Contact(void);
 
 			bool fill_contact();
-			void get_contact(int index);
+			void get_contact(int index, bool full);
 };
 
 #endif
