@@ -35,7 +35,7 @@ int PhoneBook::set_info(void)
 	{
 		std::cout << "---------------------------------------------->" << std::endl;
 		std::cout << "PhoneBook is full, you can't add more contacts" << std::endl;
-		std::cout << "if you want to add more contacts, please delete an existing one first, or the last contact you had created will be replaced by the new one" << std::endl;
+		std::cout << "if you want to add more contacts, please delete an existing one first, or first contact you had created will be replaced by the new one" << std::endl;
 		std::cout << "Do you want to continue ? (yes/no)\n Yes for create a new contact or no for back to main menu" << std::endl;
 		std::cout << "Type 'yes' or 'no': ";
 		if (!std::getline(std::cin, input))
@@ -129,9 +129,9 @@ void PhoneBook::search_info(void)
 				index = std::atoi(input.c_str());
 				if (index > 0)
 				{
-					// std::cout << "|-----------------------------------------------------------------|" << std::endl;
-					// std::cout << "|     Index|First Name| Last Name|  Nickname| Ph.Number|DarkSecret|" << std::endl;
-					// std::cout << "|----------|----------|----------|----------|----------|----------|" << std::endl;
+					std::cout << "|-----------------------------------------------------------------|" << std::endl;
+					std::cout << "|     Index|First Name| Last Name|  Nickname| Ph.Number|DarkSecret|" << std::endl;
+					std::cout << "|----------|----------|----------|----------|----------|----------|" << std::endl;
 					this->contacts[index - 1].get_contact(index,true);
 					std::cout << "|-------------------------------------------|----------|----------|" << std::endl;
 					std::cout << std::endl;
