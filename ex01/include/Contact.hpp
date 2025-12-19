@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsaby <tsaby@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: tsaby <tsaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:15:16 by tsaby             #+#    #+#             */
-/*   Updated: 2025/07/17 18:31:09 by tsaby            ###   ########.fr       */
+/*   Updated: 2025/12/19 18:08:06 by tsaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,18 @@
 
 #include <iostream>
 #include <iomanip>
-#include <string>
 #include <cstdlib>
+#include <sstream>
+
 
 
 class Contact
 {
 	private:
-			static std::string	name[5];
+			static std::string	_name[5];
 			std::string		_info[11];
 
-			enum info_contact
+			enum _info_contact
 			{
 				FirstName = 0,
 				LastName,
@@ -39,6 +40,7 @@ class Contact
 
 			bool fill_contact();
 			void get_contact(int index, bool full);
+			void get_contact_info(int index);
 };
 
 #endif

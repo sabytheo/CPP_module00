@@ -3,8 +3,8 @@
 PhoneBook::PhoneBook(void)
 {
 	std::cout << "Constructor called PhoneBook" << std::endl;
-	this->index = 0;
-	this->full = false;
+	this->_index = 0;
+	this->_full = false;
 	return;
 }
 
@@ -16,22 +16,22 @@ PhoneBook::~PhoneBook(void)
 int PhoneBook::set_info(void)
 {
 	std::string input;
-
-	if (this->full == false && this->index < 8)
+	static int oldest = 0;
+	if (this->_full == false && this->_index < 8)
 	{
 		std::cout << "---------------------------------------------->" << std::endl;
-		std::cout << "Please enter the contact _info (type 'exit' to stop):" << std::endl;
-		if (this->contacts[this->index].fill_contact() == true)
+		std::cout << "Please enter the contact info " << std::endl;
+		if (this->_contacts[this->_index].fill_contact() == true)
 		{
-			this->index++;
-			if (this->index == 8)
-				this->full = true;
+			this->_index++;
+			if (this->_index == 8)
+				this->_full = true;
 			return(0);
 		}
 		else
 			return (-1);
 	}
-	else if (this->full == true)
+	else if (this->_full == true)
 	{
 		std::cout << "---------------------------------------------->" << std::endl;
 		std::cout << "PhoneBook is full, you can't add more contacts" << std::endl;
@@ -45,13 +45,17 @@ int PhoneBook::set_info(void)
 		}
 		if (input == "yes" || input == "y")
 		{
-			this->index = 0;
-			this->full = false;
-			if (this->contacts[this->index].fill_contact() == true)
+			this->_index = oldest++;
+			this->_full = false;
+			if (this->_contacts[this->_index].fill_contact() == true)
 			{
-				this->index = 8;
-				if (this->index == 8)
-					this->full = true;
+				if (this->_index == 8)
+				{
+					this->_full = true;
+					oldest = 0;
+				}
+				this->_index = 8;
+				this->_full = true;
 			}
 			else
 				return (-1);
@@ -74,28 +78,29 @@ int PhoneBook::set_info(void)
 
 void PhoneBook::search_info(void)
 {
-	int index;
 	std::string input;
 
-	if (this->index == 0)
+	std::cout << _index << std::endl;
+
+	if (this->_index == 0)
 	{
 		std::cout << "---------------------------------------------->" << std::endl;
 		std::cout << "PhoneBook is empty, please add a contact first" << std::endl;
 		return;
 	}
-	else if (this->index > 0)
+	else if (this->_index > 0)
 	{
 		std::cout << "|-------------------------------------------|" << std::endl;
 		std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
 		std::cout << "|----------|----------|----------|----------|" << std::endl;
-		for (int i = 1; i <= this->index; i++)
+		for (int i = 1; i <= this->_index; i++)
 		{
-			this->contacts[i -1].get_contact(i,false);
+			this->_contacts[i -1].get_contact(i,false);
 		}
 		std::cout << "|-------------------------------------------|" << std::endl;
 		std::cout << std::endl;
 		std::cout << "---------------------------------------------->" << std::endl;
-		std::cout << "Type the index of the contact you want to view (1-" << this->index << ") ; 0 to exit :  ";
+		std::cout << "Type the index of the contact you want to view (1-" << this->_index << ") ; 0 to exit :  ";
 		while(true)
 		{
 			if (!std::getline(std::cin, input))
@@ -103,38 +108,35 @@ void PhoneBook::search_info(void)
 				std::cout << std::endl << "EOF detected. Exiting Search Mode..." << std::endl;
 				return;
 			}
+			std::stringstream ss(input);
+			int index_search;
+			ss >> index_search;
 			if (input == "0")
 			{
 				std::cout << "---------------------------------------------->" << std::endl;
 				std::cout << "Exiting Search Mode..." << std::endl;
 				return;
 			}
-			else if (input.length() > 1 || !isdigit(input[0]))
+			else if (input.length() > 1 || !std::isdigit(input[0]))
 			{
 				std::cout << "\033[31mInvalid input. Please try again.\033[0m" << std::endl;
 				std::cout << "---------------------------------------------->" << std::endl;
-				std::cout << "Type the index of the contact you want to view (1-" << this->index << "):, 9 for all contact, 0 to exit :  ";
+				std::cout << "Type the index of the contact you want to view (1-" << this->_index << "):, 0 to exit :  ";
 				continue;
 			}
-			else if (std::atoi(input.c_str()) < 1 || std::atoi(input.c_str()) > this->index)
+			else if (index_search < 1 || index_search > this->_index)
 			{
 				std::cout << "\033[31mInvalid input. Please try again.\033[0m" << std::endl;
 				std::cout << "---------------------------------------------->" << std::endl;
-				std::cout << "Type the index of the contact you want to view (1-" << this->index << "):, 9 for all contact, 0 to exit :  ";
+				std::cout << "Type the index of the contact you want to view (1-" << this->_index << "):, 0 to exit :  ";
 				std::cin.clear();
 				continue;
 			}
 			else
 			{
-				index = std::atoi(input.c_str());
-				if (index > 0)
+				if (index_search > 0)
 				{
-					std::cout << "|-----------------------------------------------------------------|" << std::endl;
-					std::cout << "|     Index|First Name| Last Name|  Nickname| Ph.Number|DarkSecret|" << std::endl;
-					std::cout << "|----------|----------|----------|----------|----------|----------|" << std::endl;
-					this->contacts[index - 1].get_contact(index,true);
-					std::cout << "|-------------------------------------------|----------|----------|" << std::endl;
-					std::cout << std::endl;
+					this->_contacts[index_search - 1].get_contact_info(index_search);
 				}
 				return;
 			}

@@ -17,13 +17,13 @@ Contact::~Contact()
 	std::cout << "Destructor called Contact" << std::endl;
 }
 
-std::string Contact::name[5] =
+std::string Contact::_name[5] =
 {
-	"First Name",
-	"Last Name",
-	"Nickname",
-	"Phone Number",
-	"Darkest Secret"
+	"\033[32mFirst Name\033[0m",
+	"\033[32mLast Name\033[0m",
+	"\033[32mNickname\033[0m",
+	"\033[32mPhone Number\033[0m",
+	"\033[32mDarkest Secret\033[0m"
 };
 
 bool	Contact::fill_contact()
@@ -32,7 +32,7 @@ bool	Contact::fill_contact()
 
 	for(i = FirstName; i <= DarkestSecret;)
 	{
-		std::cout << Contact::name[i] << " : --> ";
+		std::cout << Contact::_name[i] << " : --> ";
 		if (!std::getline(std::cin,this->_info[i]))
 		{
 			std::cout << std::endl << "EOF detected. Contact creation cancelled." << std::endl;
@@ -89,4 +89,22 @@ void Contact::get_contact(int index, bool full)
 		}
 		std::cout << "|" << std::endl;
 	}
+}
+
+void Contact::get_contact_info(int index)
+{
+	std::cout << "|-----------------------------------------------------------------|" << std::endl;
+	std::cout << "  You have choosen the index numbered " << index << std::endl;
+	std::cout << "|-----------------------------------------------------------------|" << std::endl;
+	for (int i = FirstName; i <= DarkestSecret; i++)
+	{
+		std::cout << "| ";
+		std::cout << this->_name[i] << std::endl;
+		std::cout << "|-----------------------------------------------------------------|" << std::endl;
+		std::cout << ":  ";
+		std::cout << this->_info[i] << std::endl;
+		if ( i != DarkestSecret)
+			std::cout << "|-----------------------------------------------------------------|" << std::endl;
+	}
+	std::cout << "|-----------------------------------------------------------------|" << std::endl << std::endl;
 }
