@@ -45,15 +45,13 @@ int PhoneBook::set_info(void)
 		}
 		if (input == "yes" || input == "y")
 		{
-			this->_index = oldest++;
+			this->_index = oldest;
+			oldest++;
 			this->_full = false;
+			if (oldest >= 8)
+				oldest = 0;
 			if (this->_contacts[this->_index].fill_contact() == true)
 			{
-				if (this->_index == 8)
-				{
-					this->_full = true;
-					oldest = 0;
-				}
 				this->_index = 8;
 				this->_full = true;
 			}
