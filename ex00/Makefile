@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tsaby <tsaby@student.42lyon.fr>            +#+  +:+       +#+         #
+#    By: tsaby <tsaby@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/23 17:03:26 by tsaby             #+#    #+#              #
-#    Updated: 2025/06/24 14:27:52 by tsaby            ###   ########.fr        #
+#    Updated: 2026/01/14 10:41:08 by tsaby            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS		:=	megaphone.cpp
 
 #*------------------------------------------------------------------------------*
 
-SRCS_D		:=	sources/
+SRCS_D		:=	src/
 
 OBJS_D		:=	objs/
 
@@ -34,11 +34,11 @@ OBJS		:=	$(SRCS:%.cpp=$(OBJS_D)%.o)
 
 # HEAD_D		:=	.
 
-CC 			:= c++
+CXX 			:= c++
 
 #*------------------------------------------------------------------------------*
 
-CFLAGS		:=	-Wall -Wextra -Werror -std=c++98 -g3
+CXXFLAGS		:=	-Wall -Wextra -Werror -std=c++98 -g3
 
 #*------------------------------------------------------------------------------*
 
@@ -53,13 +53,13 @@ all			:
 #*------------------------------------------------------------------------------*
 
 $(NAME)		:	$(OBJS_D) $(OBJS)
-				@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+				@$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 				@echo "$(YELLOW)$(NAME) successfully built!$(NC)"
 
 
 $(OBJS)		:	$(OBJS_D)%.o: $(SRCS_D)%.cpp
 				@echo "$(YELLOW)Compiling $<,...$(NC)"
-				@$(CC) $(CFLAGS) -Iinclude -c $< -o $@
+				@$(CXX) $(CXXFLAGS) -Iinclude -c $< -o $@
 
 
 $(OBJS_D)	:
