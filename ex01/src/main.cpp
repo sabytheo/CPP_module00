@@ -6,7 +6,7 @@
 /*   By: tsaby <tsaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 13:52:22 by tsaby             #+#    #+#             */
-/*   Updated: 2025/12/19 13:47:54 by tsaby            ###   ########.fr       */
+/*   Updated: 2026/01/14 09:56:21 by tsaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int main(void)
 {
 	PhoneBook Phonebook;
 	std::string command;
-	Contact contact;
 
 	std::cout << "---------------------------------------------->" << std::endl;
 	std::cout << "Welcome to the PhoneBook application!" << std::endl;

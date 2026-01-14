@@ -93,7 +93,7 @@ void PhoneBook::search_info(void)
 		std::cout << "|----------|----------|----------|----------|" << std::endl;
 		for (int i = 1; i <= this->_index; i++)
 		{
-			this->_contacts[i -1].get_contact(i,false);
+			this->_contacts[i -1].get_contact(i);
 		}
 		std::cout << "|-------------------------------------------|" << std::endl;
 		std::cout << std::endl;

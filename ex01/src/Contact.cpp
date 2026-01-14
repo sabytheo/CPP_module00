@@ -2,14 +2,7 @@
 
 Contact::Contact(void)
 {
-	int i;
-
 	std::cout << "Constructor called Contact" << std::endl;
-	for (i = FirstName; i <= DarkestSecret;i++)
-	{
-		this->_info[i] = std::string();
-		return;
-	}
 }
 
 Contact::~Contact()
@@ -62,33 +55,18 @@ bool	Contact::fill_contact()
 	return (true);
 }
 
-void Contact::get_contact(int index, bool full)
+void Contact::get_contact(int index)
 {
 	std::cout << "|" << std::setw(10) << index;
-	if (full == true)
+	for (int i = FirstName; i <= NickName; i++)
 	{
-		for (int i = FirstName; i <= DarkestSecret; i++)
-		{
-			std::cout << "|";
-			if (this->_info[i].length() > 10)
-				std::cout << this->_info[i];
-			else
-				std::cout << std::setw(10) << this->_info[i];
-		}
-		std::cout << "|" << std::endl;
+		std::cout << "|";
+		if (this->_info[i].length() > 10)
+			std::cout << this->_info[i].substr(0, 9) << ".";
+		else
+			std::cout << std::setw(10) << this->_info[i];
 	}
-	else
-	{
-		for (int i = FirstName; i <= NickName; i++)
-		{
-			std::cout << "|";
-			if (this->_info[i].length() > 10)
-				std::cout << this->_info[i].substr(0, 9) << ".";
-			else
-				std::cout << std::setw(10) << this->_info[i];
-		}
-		std::cout << "|" << std::endl;
-	}
+	std::cout << "|" << std::endl;
 }
 
 void Contact::get_contact_info(int index)

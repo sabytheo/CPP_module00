@@ -6,7 +6,7 @@
 #    By: tsaby <tsaby@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/23 17:03:26 by tsaby             #+#    #+#              #
-#    Updated: 2025/12/19 10:17:53 by tsaby            ###   ########.fr        #
+#    Updated: 2026/01/14 10:03:42 by tsaby            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRCS		:=	Contact.cpp \
 
 #*------------------------------------------------------------------------------*
 
-SRCS_D		:=	sources/
+SRCS_D		:=	src/
 
 OBJS_D		:=	objs/
 
@@ -37,17 +37,17 @@ HEAD		:=	include/Contact.hpp \
 
 HEAD_D		:=	.
 
-CC 			:= c++
+CXX 			:= c++
 
 #*------------------------------------------------------------------------------*
 
-CFLAGS		:=	-Wall -Wextra -Werror -std=c++98 -g3 -MMD -MP
+CXXFLAGS		:=	-Wall -Wextra -Werror -std=c++98 -g3 -MMD -MP
 
 #*------------------------------------------------------------------------------*
 
 NAME		:=	Awesome-PhoneBook
 
-#*------------------------------------------------------------------------------*
+#*------------------------------------------------------------------------------*z
 
 all			:
 				@$(MAKE) --no-print-directory $(NAME)
@@ -56,13 +56,13 @@ all			:
 #*------------------------------------------------------------------------------*
 
 $(NAME)		:	$(OBJS_D) $(OBJS)
-				@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+				@$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 				@echo "$(YELLOW)$(NAME) successfully built!$(NC)"
 
 
 $(OBJS)		:	$(OBJS_D)%.o: $(SRCS_D)%.cpp $ | $(OBJS_D)
 				@echo "$(YELLOW)Compiling $<,...$(NC)"
-				@$(CC) $(CFLAGS) -Iinclude -c $< -o $@
+				@$(CXX) $(CXXFLAGS) -Iinclude -c $< -o $@
 
 
 $(OBJS_D)	:

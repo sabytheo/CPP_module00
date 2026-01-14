@@ -6,7 +6,7 @@
 /*   By: tsaby <tsaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 10:15:16 by tsaby             #+#    #+#             */
-/*   Updated: 2025/12/19 18:08:06 by tsaby            ###   ########.fr       */
+/*   Updated: 2026/01/14 09:43:20 by tsaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Contact
 {
 	private:
 			static std::string	_name[5];
-			std::string		_info[11];
+			std::string		_info[5];
 
 			enum _info_contact
 			{
@@ -39,7 +39,7 @@ class Contact
 			~Contact(void);
 
 			bool fill_contact();
-			void get_contact(int index, bool full);
+			void get_contact(int index);
 			void get_contact_info(int index);
 };
 
